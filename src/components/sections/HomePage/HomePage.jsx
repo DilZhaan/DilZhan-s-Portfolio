@@ -122,14 +122,14 @@ function HomePage() {
             Hi there...!
           </h1>
           <div className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4 mb-6 text-accent-400">
-              I'm DilZhan Yapa
+              I'm DilZhan YaPa
           </div>
           <div className="h-16 flex justify-center">
           <TypingAnimation />
           </div>
           <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
-              href="#" 
+              href="https://storage.rxresu.me/cm7msdjjb3at21492ka4bii2s/resumes/intern-software-engineer.pdf" 
               className="group px-8 py-4 bg-accent-600 text-white font-medium rounded-lg relative overflow-hidden shadow-lg shadow-accent-900/20"
             >
               <span className="relative z-10 flex items-center justify-center">

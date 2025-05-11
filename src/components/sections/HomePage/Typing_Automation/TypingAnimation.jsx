@@ -6,8 +6,6 @@ function TypingAnimation() {
     "Undergraduate Student",
     "Full Stack Engineer",
     "Software Engineer",
-    "Web Developer",
-    "UI/UX Designer"
   ];
 
   const [displayText, setDisplayText] = useState("");

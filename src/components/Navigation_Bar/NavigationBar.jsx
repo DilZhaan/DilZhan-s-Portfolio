@@ -116,7 +116,7 @@ function NavigationBar() {
               onClick={() => scrollToSection('home')} 
               className="text-accent-400 font-bold text-xl hover:text-accent-300 transition-colors"
             >
-              Portfolio
+              DilZhan YaPa
             </button>
           </div>
           

@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
-import img3 from "../../../assets/Projects/todo-react.png";
+import eComerceF from "../../../assets/Projects/ecommerce-front.jpg";
+import eComerceB from "../../../assets/Projects/ecommerce-back.jpg";
+import avanes from "../../../assets/Projects/avanes.jpg";
+import portfolio from "../../../assets/Projects/portfolio.jpg";
 
 function ProjectCard({ project }) {
   return (
@@ -73,42 +76,42 @@ function Projects() {
 
   const projects = [
     {
-      name: "DevOps Automation Pipeline",
-      image: img3,
+      name: "E-Commerce Platform BackEnd",
+      image: eComerceB,
       description:
-        "A comprehensive CI/CD pipeline created with Azure DevOps, automating the build, test, and deployment processes for a microservices application. Implements infrastructure as code with Terraform and containerizes services with Docker.",
+        "Engineered a robust backend infrastructure for an e-commerce platform with Node.js/Express, implementing RESTful API endpoints and MongoDB data modeling. Developed secure user authentication using JWT, robust error handling, and middleware for request validation. Created backend services for inventory management, order processing, and payment gateway integration. Implemented database optimization techniques, caching strategies, and security measures like data sanitization and rate limiting. Designed comprehensive API documentation and unit tests to ensure code reliability and maintainability.",
       technologies: [
-        "Azure DevOps",
-        "Docker",
-        "Terraform",
-        "YAML",
-        "Kubernetes",
+        "MongoDB",
+        "Express",
+        "Node.js",
+        "JWT",
+        "WebSockets",
       ],
-      github: "https://github.com/DilZhanYapa/devops-automation-pipeline",
+      github: "https://github.com/DilZhaan/E-Commerce-Sys-BackEnd-MERN",
     },
     {
-      name: "Cloud-Native Task Manager",
-      image: img3,
+      name: "E-Commerce Platform FrontEnd",
+      image: eComerceF,
       description:
-        "A full-stack task management application built with React and Node.js, featuring cloud-native architecture. Implements containerized microservices, CI/CD with GitHub Actions, and automated scaling on Azure Kubernetes Service.",
-      technologies: ["React", "Node.js", "Docker", "GitHub Actions", "Azure"],
-      github: "https://github.com/DilZhanYapa/cloud-native-task-manager",
+        "Built a feature-complete online shopping platform frontend with React/Redux, implementing responsive UI components and state management. Designed an intuitive user interface with Tailwind CSS featuring product browsing, filtering, and cart management. Developed client-side form validation, authentication flows, and API integration. Created interactive elements including product carousels, image galleries, and a responsive checkout process. Implemented performance optimizations like lazy loading, code splitting, and optimized renders to ensure smooth user experience across all devices.",
+      technologies: ["React", "Node.js", "Redux", "Tailwind CSS", "JWT"],
+      github: "https://github.com/DilZhaan/E-Commerce-Sys-FrontEnd-MERN",
     },
     {
-      name: "Infrastructure Monitoring Dashboard",
-      image: img3,
+      name: "AVANES Vision - AI Voice Assistant Net Exam System",
+      image: avanes,
       description:
-        "A real-time monitoring solution that aggregates and visualizes system metrics from cloud infrastructure. Built with the MERN stack and integrates with Prometheus and Grafana for comprehensive observability.",
-      technologies: ["MongoDB", "Express", "React", "Node.js", "Prometheus"],
-      github: "https://github.com/DilZhanYapa/infrastructure-monitoring",
+        "Architected an innovative education platform combining Java Spring Boot backend and React frontend to revolutionize accessibility. Implemented voice commands using WebSockets and Vosk for hands-free navigation, plus text-to-speech for content delivery. Created secure authentication using JWT, device fingerprinting, and IP verification. Developed a comprehensive assessment system including automatic grading, progress tracking, and administrative controls. Applied accessibility-first design throughout, ensuring WCAG compliance while creating a responsive UI using Tailwind CSS and Framer Motion.",
+      technologies: ["Java Spring Boot", "React", "WebSockets", "JWT", "Tailwind CSS", "Framer Motion", "Vosk"],
+      github: "https://github.com/AVANES-Vision",
     },
     {
       name: "Modern Portfolio Site",
-      image: img3,
+      image: portfolio,
       description:
         "A responsive and modern portfolio website built using React and Tailwind CSS. Features clean architecture, responsive design, and CI/CD deployment pipeline. Showcases my skills and projects with an emphasis on DevOps and full-stack development.",
       technologies: ["React", "Tailwind CSS", "Vite", "GitHub Pages"],
-      github: "https://github.com/DilZhanYapa/portfolio",
+      github: "https://github.com/DilZhaan/DilZhan-s-Portfolio",
     },
   ];
 
