@@ -1,0 +1,52 @@
+.results-container {
+    background-color: #1a1a2e;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.semester-title {
+    background: linear-gradient(90deg, #00a3fe, #00faf0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results-header {
+    background: linear-gradient(90deg, #00a3fe, #00faf0);
+    color: #000;
+}
+
+.results-header th {
+    padding: 12px;
+    text-align: left;
+}
+
+.results-row td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+}
+
+.gpa-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.gpa-box {
+    background: linear-gradient(90deg, #00a3fe, #00faf0);
+
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: bold;
+}
