@@ -5,9 +5,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - GITHUB_PAGES=true
+    image: portfolio
+    container_name: dilzhan-portfolio
     ports:
       - "80:80"
     restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - BASE_URL=/DilZhan-s-Portfolio/
     # For local development with hot-reloading, uncomment these lines:
     # volumes:
     #   - ./src:/app/src
