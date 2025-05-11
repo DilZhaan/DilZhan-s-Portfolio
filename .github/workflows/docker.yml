@@ -1,25 +1,19 @@
-name: Build and Push Docker Image
+name: Build and Deploy Docker Image
 
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'Dockerfile'
-      - 'nginx.conf'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/docker.yml'
   workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -51,4 +45,40 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
-          cache-to: type=gha,mode=max 
+          cache-to: type=gha,mode=max
+
+  deploy-to-pages:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Run the container to extract static files
+      - name: Pull and run container to extract static files
+        run: |
+          mkdir -p _site
+          docker pull ghcr.io/${{ github.repository }}:latest
+          docker create --name temp-container ghcr.io/${{ github.repository }}:latest
+          docker cp temp-container:/usr/share/nginx/html/. _site/
+          docker rm temp-container
+          # Fix file permissions
+          chmod -R 755 _site
+
+      # Setup Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      # Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: '_site'
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 

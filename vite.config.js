@@ -38,5 +38,14 @@ export default defineConfig({
     assetsDir: 'assets',
     // Ensure asset paths are relative
     assetsInlineLimit: 0,
-  }
+    // Configure proper MIME types
+    rollupOptions: {
+      output: {
+        // Ensure .mjs extension for JavaScript modules
+        entryFileNames: 'assets/[name].[hash].mjs',
+        chunkFileNames: 'assets/[name].[hash].mjs',
+        assetFileNames: 'assets/[name].[hash][extname]'
+      }
+    }
+  },
 })
