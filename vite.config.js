@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'url'
 import { readFileSync } from 'fs'
 import { dirname, resolve } from 'path'
@@ -30,7 +29,6 @@ const getBasePath = () => {
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
   ],
   base: getBasePath(),
   build: {
@@ -41,9 +39,9 @@ export default defineConfig({
     // Configure proper MIME types
     rollupOptions: {
       output: {
-        // Ensure .mjs extension for JavaScript modules
-        entryFileNames: 'assets/[name].[hash].mjs',
-        chunkFileNames: 'assets/[name].[hash].mjs',
+        // Use standard .js extension for better compatibility
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash][extname]'
       }
     }
