@@ -3,19 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dilzhaan.github.io/DilZhan-s-Portfolio/",
   "scripts": {
-    "dev": "vite --base=/",
-    "dev:win": "dev.bat",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build && node --no-warnings gh-pages-deploy.cjs",
-    "deploy": "gh-pages -d dist",
-    "deploy:docker": "node deploy-docker.cjs",
-    "deploy:docker:win": "powershell -ExecutionPolicy Bypass -File ./deploy-docker.ps1",
-    "deploy:simple": "node deploy-simple.cjs",
-    "deploy:simple:win": "powershell -ExecutionPolicy Bypass -File ./deploy-simple.ps1"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
@@ -34,7 +26,6 @@
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "gh-pages": "^6.1.1",
     "globals": "^15.15.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.6",

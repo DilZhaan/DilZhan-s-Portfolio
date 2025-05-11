@@ -8,7 +8,6 @@ A modern, responsive portfolio website built with React, Vite, and TailwindCSS. 
 - **Modern UI Components** - Clean interfaces with subtle animations
 - **Fast Performance** - Optimized build with Vite for quick loading times
 - **Docker Support** - Easy deployment with containerization
-- **GitHub Pages** - Automated deployment via GitHub Actions
 
 ## 🛠️ Technology Stack
 
@@ -17,7 +16,6 @@ A modern, responsive portfolio website built with React, Vite, and TailwindCSS. 
 - **TailwindCSS 4** - Utility-first CSS framework
 - **React Router 7** - For seamless navigation
 - **Docker** - Containerization for consistent deployment
-- **GitHub Actions** - CI/CD workflow automation
 
 ## 🚀 Getting Started
 
@@ -25,8 +23,8 @@ A modern, responsive portfolio website built with React, Vite, and TailwindCSS. 
 
 ```bash
 # Clone the repository
-git clone https://github.com/DilZhaan/DilZhan-s-Portfolio.git
-cd DilZhan-s-Portfolio
+git clone https://github.com/YOUR_USERNAME/portfolio.git
+cd portfolio
 
 # Install dependencies
 npm install
@@ -48,12 +46,6 @@ docker-compose up -d
 
 The application will be available at `http://localhost:80`.
 
-### GitHub Pages Deployment
-
-For GitHub Pages deployment details, refer to the `GITHUB_PAGES_README.md` file. The site is automatically deployed to:
-
-https://dilzhaan.github.io/DilZhan-s-Portfolio/
-
 ## 📁 Project Structure
 
 ```
@@ -66,8 +58,6 @@ portfolio/
 │   ├── App.jsx       # Application root component
 │   └── main.jsx      # Entry point
 ├── public/           # Public assets
-├── .github/
-│   └── workflows/    # GitHub Actions workflows
 ├── docker-compose.yml
 ├── Dockerfile
 ├── nginx.conf        # Nginx configuration for Docker deployment

@@ -1,20 +1,19 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 
 WORKDIR /app
 
-# Set the base URL for GitHub Pages
-ENV BASE_URL=/DilZhan-s-Portfolio/
-
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
-# Try npm ci first, but fall back to npm install if it fails
-RUN npm ci || npm install
+RUN npm ci
 
 # Copy project files
 COPY . .
 
-# Build the project with proper base path
+# Fix case sensitivity in import paths
+RUN find src -type f -name "*.jsx" -o -name "*.js" | xargs grep -l "typingAnimation" | xargs sed -i 's/typingAnimation/TypingAnimation/g' || true
+
+# Build the project
 RUN npm run build
 
 # Production stage
@@ -26,14 +25,8 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Create a 404.html for GitHub Pages SPA routing
-RUN cp /usr/share/nginx/html/index.html /usr/share/nginx/html/404.html
-
-# Create a .nojekyll file to prevent GitHub Pages from using Jekyll
-RUN touch /usr/share/nginx/html/.nojekyll
-
 # Expose port 80
 EXPOSE 80
 
 # Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"] 
