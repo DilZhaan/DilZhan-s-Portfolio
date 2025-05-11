@@ -1,18 +1,10 @@
-# This workflow is now disabled in favor of the Docker-based GitHub Pages deployment
-# See docker.yml for the active workflow
-
-name: [DISABLED] Deploy to GitHub Pages
+name: Deploy to GitHub Pages via Docker
 
 on:
-  # Disable all triggers
-  workflow_dispatch:
-    inputs:
-      run:
-        description: 'This workflow is disabled'
-        required: true
-        default: 'do not run'
+  push:
+    branches:
+      - main  # Change to your default branch if different
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
   pages: write
@@ -20,45 +12,36 @@ permissions:
 
 jobs:
   build-and-deploy:
-    # Add a condition that prevents this from running
-    if: false
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js ⚙️
-        uses: actions/setup-node@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
         with:
-          node-version: 20
-          cache: 'npm'
+          context: .
+          load: true
+          tags: portfolio:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Install Dependencies 📦
-        run: npm ci
-
-      - name: Build 🏗️
+      - name: Extract build artifacts from Docker
         run: |
-          # Set the base URL for GitHub Pages
-          export BASE_URL=/DilZhan-s-Portfolio/
-          
-          # Build the project
-          npm run build
-          
-          # Copy index.html to 404.html for client-side routing
-          cp dist/index.html dist/404.html
-          
-          # Fix asset paths in the HTML files
-          find dist -name "*.html" -exec sed -i 's/href="\/assets\//href="\.\/assets\//g' {} \;
-          find dist -name "*.html" -exec sed -i 's/src="\/assets\//src="\.\/assets\//g' {} \;
-          
-          # Print directory structure for debugging
-          echo "Directory structure:"
-          ls -la dist/
-          ls -la dist/assets/ || echo "No assets directory"
+          mkdir -p ./dist
+          docker create --name temp-container portfolio:latest
+          docker cp temp-container:/usr/share/nginx/html/. ./dist/
+          docker rm temp-container
 
-      - name: Deploy 🚀
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
-          clean: true 
+          clean: true
