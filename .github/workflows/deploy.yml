@@ -28,9 +28,24 @@ jobs:
         run: npm ci
 
       - name: Build 🏗️
-        run: npm run build
-        env:
-          BASE_URL: /DilZhan-s-Portfolio/
+        run: |
+          # Set the base URL for GitHub Pages
+          export BASE_URL=/DilZhan-s-Portfolio/
+          
+          # Build the project
+          npm run build
+          
+          # Copy index.html to 404.html for client-side routing
+          cp dist/index.html dist/404.html
+          
+          # Fix asset paths in the HTML files
+          find dist -name "*.html" -exec sed -i 's/href="\/assets\//href="\.\/assets\//g' {} \;
+          find dist -name "*.html" -exec sed -i 's/src="\/assets\//src="\.\/assets\//g' {} \;
+          
+          # Print directory structure for debugging
+          echo "Directory structure:"
+          ls -la dist/
+          ls -la dist/assets/ || echo "No assets directory"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
