@@ -1,4 +1,4 @@
-import TypingAnimation from "./Typing_Automation/typingAnimation";
+import TypingAnimation from "./Typing_Automation/TypingAnimation";
 import { useEffect, useState, useRef } from "react";
 
 function HomePage() {

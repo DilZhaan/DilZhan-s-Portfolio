@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    # For local development with hot-reloading, uncomment these lines:
+    # volumes:
+    #   - ./src:/app/src
+    #   - ./public:/app/public
+    #   - ./index.html:/app/index.html 
