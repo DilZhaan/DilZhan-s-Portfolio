@@ -1,3 +1,4 @@
+# Alternative Dockerfile that doesn't rely on package-lock.json
 # Build stage
 FROM node:20-alpine as build
 
@@ -6,10 +7,11 @@ WORKDIR /app
 # Set the base URL for GitHub Pages
 ENV BASE_URL=/DilZhan-s-Portfolio/
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
-# Try npm ci first, but fall back to npm install if it fails
-RUN npm ci || npm install
+# Copy package.json first
+COPY package.json ./
+
+# Use npm install instead of npm ci
+RUN npm install
 
 # Copy project files
 COPY . .

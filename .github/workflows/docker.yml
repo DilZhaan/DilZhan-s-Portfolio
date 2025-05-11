@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   pages: write
   id-token: write
@@ -37,7 +37,10 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha,format=short
 
+      # Try building with regular Dockerfile
       - name: Build and push Docker image
+        id: docker-build
+        continue-on-error: true
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -46,6 +49,21 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      
+      # If regular build fails, try with the alternative Dockerfile
+      - name: Build and push with alternative Dockerfile if main build failed
+        if: steps.docker-build.outcome == 'failure'
+        run: |
+          echo "Main Docker build failed, trying with alternative Dockerfile..."
+          
+          # Create a temporary Dockerfile from the alternative
+          cp Dockerfile.alt Dockerfile
+          
+          # Run docker build directly
+          docker build -t ghcr.io/${{ github.repository }}:latest .
+          docker push ghcr.io/${{ github.repository }}:latest
+          
+          echo "Alternative Docker build completed successfully."
 
   deploy-to-pages:
     needs: build-and-push
@@ -67,6 +85,12 @@ jobs:
           docker rm temp-container
           # Fix file permissions
           chmod -R 755 _site
+          
+          # Print directory contents for debugging
+          echo "Contents of _site directory:"
+          ls -la _site/
+          echo "Contents of _site/assets directory (if it exists):"
+          ls -la _site/assets/ || echo "No assets directory found"
 
       # Setup Pages
       - name: Setup Pages
