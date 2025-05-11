@@ -5,6 +5,7 @@ function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef(null);
+  console.log("Hello");
 
   useEffect(() => {
     const handleMouseMove = (event) => {
