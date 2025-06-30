@@ -1,4 +1,4 @@
-import profilePic from "../../../assets/AboutMe/image1.jpg";
+import profilePic from "../../../assets/AboutMe/dp.png";
 import { useEffect, useRef } from "react";
 
 function AboutMe() {
