@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import eComerceF from "../../../assets/Projects/ecommerce-front.jpg";
-import eComerceB from "../../../assets/Projects/ecommerce-back.jpg";
+import eComerceB from "../../../assets/Projects/ecommerce-front.jpg";
 import avanes from "../../../assets/Projects/avanes.jpg";
 import portfolio from "../../../assets/Projects/portfolio.jpg";
+import budgeteer from "../../../assets/Projects/budgetApp.png";
 
 function ProjectCard({ project }) {
   return (
@@ -45,27 +45,92 @@ function ProjectCard({ project }) {
             ))}
           </div>
         </div>
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          <span>View on GitHub</span>
-        </a>
+        
+        {/* Action buttons container */}
+        <div className="flex flex-col gap-3">
+          {/* GitHub buttons */}
+          <div className="flex flex-col gap-2">
+            {Array.isArray(project.github) ? (
+              // Multiple GitHub repositories
+              project.github.map((githubUrl, index) => (
+                <a
+                  key={index}
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <span>
+                    {index === 0 ? "Backend" : index === 1 ? "Frontend" : `Repo ${index + 1}`}
+                  </span>
+                </a>
+              ))
+            ) : (
+              // Single GitHub repository
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>View on GitHub</span>
+              </a>
+            )}
+          </div>
+
+          {/* Live demo button */}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15,3 21,3 21,9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Live Demo</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -76,33 +141,40 @@ function Projects() {
 
   const projects = [
     {
-      name: "E-Commerce Platform BackEnd",
-      image: eComerceB,
+      name: "E-Commerce Platform (Full Stack)",
+      image: eComerceB, 
       description:
-        "Engineered a robust backend infrastructure for an e-commerce platform with Node.js/Express, implementing RESTful API endpoints and MongoDB data modeling. Developed secure user authentication using JWT, robust error handling, and middleware for request validation. Created backend services for inventory management, order processing, and payment gateway integration. Implemented database optimization techniques, caching strategies, and security measures like data sanitization and rate limiting. Designed comprehensive API documentation and unit tests to ensure code reliability and maintainability.",
+        "Engineered a comprehensive e-commerce platform with a robust Node.js/Express backend and a feature-complete React/Redux frontend. Implemented RESTful API endpoints, MongoDB data modeling, and secure user authentication using JWT. Developed responsive UI components for product browsing, cart management, and checkout, with Tailwind CSS for design. Integrated backend services for inventory management, order processing, and payment gateway. Employed advanced security measures, error handling, and middleware for request validation. Optimized performance across the stack with caching, lazy loading, code splitting, and thorough API documentation and unit tests to ensure reliability and maintainability.",
       technologies: [
         "MongoDB",
         "Express",
         "Node.js",
+        "React",
+        "Redux",
+        "Tailwind CSS",
         "JWT",
         "WebSockets",
       ],
-      github: "https://github.com/DilZhaan/E-Commerce-Sys-BackEnd-MERN",
-    },
-    {
-      name: "E-Commerce Platform FrontEnd",
-      image: eComerceF,
-      description:
-        "Built a feature-complete online shopping platform frontend with React/Redux, implementing responsive UI components and state management. Designed an intuitive user interface with Tailwind CSS featuring product browsing, filtering, and cart management. Developed client-side form validation, authentication flows, and API integration. Created interactive elements including product carousels, image galleries, and a responsive checkout process. Implemented performance optimizations like lazy loading, code splitting, and optimized renders to ensure smooth user experience across all devices.",
-      technologies: ["React", "Node.js", "Redux", "Tailwind CSS", "JWT"],
-      github: "https://github.com/DilZhaan/E-Commerce-Sys-FrontEnd-MERN",
+      github: [
+        "https://github.com/DilZhaan/E-Commerce-Sys-BackEnd-MERN",
+        "https://github.com/DilZhaan/E-Commerce-Sys-FrontEnd-MERN",
+      ],
+      live: "https://store.dilzhan.online",
     },
     {
       name: "AVANES Vision - AI Voice Assistant Net Exam System",
       image: avanes,
       description:
         "Architected an innovative education platform combining Java Spring Boot backend and React frontend to revolutionize accessibility. Implemented voice commands using WebSockets and Vosk for hands-free navigation, plus text-to-speech for content delivery. Created secure authentication using JWT, device fingerprinting, and IP verification. Developed a comprehensive assessment system including automatic grading, progress tracking, and administrative controls. Applied accessibility-first design throughout, ensuring WCAG compliance while creating a responsive UI using Tailwind CSS and Framer Motion.",
-      technologies: ["Java Spring Boot", "React", "WebSockets", "JWT", "Tailwind CSS", "Framer Motion", "Vosk"],
+      technologies: [
+        "Java Spring Boot",
+        "React",
+        "WebSockets",
+        "JWT",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Vosk",
+      ],
       github: "https://github.com/AVANES-Vision",
     },
     {
@@ -112,6 +184,14 @@ function Projects() {
         "A responsive and modern portfolio website built using React and Tailwind CSS. Features clean architecture, responsive design, and CI/CD deployment pipeline. Showcases my skills and projects with an emphasis on DevOps and full-stack development.",
       technologies: ["React", "Tailwind CSS", "Vite", "GitHub Pages"],
       github: "https://github.com/DilZhaan/DilZhan-s-Portfolio",
+    },
+    {
+      name: "Budgeteer – Financial Tracking App",
+      image: budgeteer,
+      description:
+        "Developed a user-friendly financial tracking app designed to help individuals manage income, expenses, and budgets efficiently. Budgeteer empowers users to set savings goals, analyze spending habits, and generate detailed financial reports. Features include real-time transaction tracking, category analysis, secure data storage, and a clean interface for intuitive navigation. Available for Android and iOS, Budgeteer makes financial management simple and accessible.",
+      technologies: ["Kotlin", "Android"],
+      github: "https://github.com/DilZhaan/Budgeteer-Financial-Tracking-App",
     },
   ];
 
