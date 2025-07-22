@@ -129,7 +129,7 @@ function HomePage() {
           </div>
           <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
-              href="/src/assets/CV/DilZhan_Yapa_CV.pdf" 
+              href="/DilZhan_Yapa_CV.pdf" 
               download
               className="group px-8 py-4 bg-accent-600 text-white font-medium rounded-lg relative overflow-hidden shadow-lg shadow-accent-900/20"
             >
