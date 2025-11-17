@@ -1,7 +1,8 @@
 import profileData from "../../data/profile.json";
+import profilePic from "../../assets/AboutMe/dp.png";
 
 function ProfileSidebar() {
-  const { name, initials, profileImage, title, bio, navigation } = profileData;
+  const { name, title, bio, navigation } = profileData;
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -22,19 +23,13 @@ function ProfileSidebar() {
       <div className="bg-[#111111] rounded-lg p-6 border border-gray-800">
         {/* Profile Image */}
         <div className="mb-6">
-          {profileImage ? (
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-800">
-              <img 
-                src={profileImage} 
-                alt={name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ) : (
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-2xl font-bold text-white">
-              {initials}
-            </div>
-          )}
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-800">
+            <img 
+              src={profilePic} 
+              alt={name}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         {/* Name and Title */}
