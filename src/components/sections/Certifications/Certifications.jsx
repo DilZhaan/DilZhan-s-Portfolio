@@ -1,6 +1,120 @@
 import React, { useState, useEffect } from 'react';
 import certificationsData from '../../../data/certifications-full.json';
 
+const CertificationCard = ({ cert, isLast }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const formatDate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  };
+
+  return (
+    <div className="relative flex gap-6 pb-8 last:pb-0">
+      {/* Timeline */}
+      <div className="relative flex flex-col items-center pt-1">
+        {/* Dot */}
+        <div className="w-3 h-3 rounded-full border-2 bg-gray-800 border-gray-700 z-10 flex-shrink-0"></div>
+        
+        {/* Vertical Line */}
+        {!isLast && (
+          <div className="w-0.5 h-full bg-gray-900 mt-2"></div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        {/* Collapsed View */}
+        <div 
+          className="cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <div className="flex items-start gap-4">
+            {/* Logo */}
+            {cert.logo && (
+              <div className="w-12 h-12 flex-shrink-0">
+                <img
+                  src={cert.logo}
+                  alt={cert.issuer}
+                  className="w-full h-full object-contain rounded"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            )}
+            
+            <div className="flex-1 min-w-0">
+              {/* Line 1: Certification name */}
+              <h3 className="text-lg font-semibold text-white mb-1">
+                {cert.name}
+              </h3>
+              
+              {/* Line 2: Issuer and date */}
+              <p className="text-sm text-gray-400">
+                {cert.issuer}
+                {cert.issueDate && (
+                  <span className="text-gray-600"> · Issued {formatDate(cert.issueDate)}</span>
+                )}
+              </p>
+            </div>
+            
+            {/* Expand Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-5 w-5 text-gray-500 flex-shrink-0 transition-transform ${
+                isExpanded ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* Expanded View */}
+        {isExpanded && (
+          <div className="mt-4 ml-16">
+            {/* Expiry Date */}
+            {cert.expiryDate && (
+              <p className="text-sm text-gray-400 mb-2">
+                Expires: {formatDate(cert.expiryDate)}
+              </p>
+            )}
+
+            {/* Credential ID */}
+            {cert.credentialId && (
+              <p className="text-sm text-gray-400 mb-3 break-all">
+                Credential ID: {cert.credentialId}
+              </p>
+            )}
+
+            {/* View Credential Button */}
+            {cert.credentialUrl && (
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                View Credential →
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Certifications = () => {
   const [certifications, setCertifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,12 +131,6 @@ const Certifications = () => {
   }, []);
 
   const displayedCertifications = showAll ? certifications : certifications.slice(0, 3);
-
-  const formatDate = (dateString) => {
-    if (!dateString) return null;
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
 
   if (loading) {
     return (
@@ -61,69 +169,13 @@ const Certifications = () => {
           {title}
         </h2>
 
-        <div className="space-y-4">
-          {displayedCertifications.map((cert) => (
-            <div
+        <div>
+          {displayedCertifications.map((cert, index) => (
+            <CertificationCard
               key={cert.id}
-              className="border border-gray-800 rounded-lg overflow-hidden hover:border-gray-700 transition-colors"
-            >
-              <div className="p-6">
-                <div className="flex items-start gap-4">
-                  {/* Issuer Logo */}
-                  {cert.logo && (
-                    <div className="w-12 h-12 flex-shrink-0">
-                      <img
-                        src={cert.logo}
-                        alt={cert.issuer}
-                        className="w-full h-full object-contain"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
-
-                  <div className="flex-1">
-                    {/* Certification Name */}
-                    <h3 className="text-lg font-semibold text-white mb-1 break-words">
-                      {cert.name}
-                    </h3>
-
-                    {/* Issuer */}
-                    <p className="text-gray-400 text-sm mb-2">{cert.issuer}</p>
-
-                    {/* Issue Date */}
-                    <div className="text-gray-500 text-sm mb-2">
-                      Issued: {formatDate(cert.issueDate)}
-                      {cert.expiryDate && (
-                        <span className="ml-2">
-                          • Expires: {formatDate(cert.expiryDate)}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Credential ID */}
-                    {cert.credentialId && (
-                      <div className="text-gray-500 text-sm mb-3 truncate">
-                        Credential ID: {cert.credentialId}
-                      </div>
-                    )}
-
-                    {/* View Credential Button */}
-                    {cert.credentialUrl && (
-                      <a
-                        href={cert.credentialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        View Credential →
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
+              cert={cert}
+              isLast={index === displayedCertifications.length - 1}
+            />
           ))}
         </div>
 
