@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import profileData from "../../data/profile.json";
+import navigationData from "../../data/navigation.json";
 
 function NavigationBar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { navigation } = profileData;
+  const { navigation } = navigationData;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +13,20 @@ function NavigationBar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -32,13 +46,13 @@ function NavigationBar() {
           {/* Desktop Navigation - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation && navigation.map((item) => (
-              <a 
+              <button 
                 key={item.id}
-                href={`#${item.id}`} 
+                onClick={() => scrollToSection(item.id)}
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
           </div>
         </div>

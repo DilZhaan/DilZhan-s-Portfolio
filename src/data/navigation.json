@@ -1,0 +1,44 @@
+{
+  "navigation": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "about",
+      "label": "About"
+    },
+    {
+      "id": "projects",
+      "label": "Portfolio"
+    },
+    {
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "id": "github-stats",
+      "label": "GitHub Stats"
+    },
+    {
+      "id": "skills",
+      "label": "Skills"
+    },
+    {
+      "id": "experience",
+      "label": "Experience"
+    },
+    {
+      "id": "education",
+      "label": "Education"
+    },
+    {
+      "id": "certifications",
+      "label": "Certifications"
+    },
+    {
+      "id": "contact",
+      "label": "Contact"
+    }
+  ]
+}
