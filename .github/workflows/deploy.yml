@@ -25,8 +25,10 @@ jobs:
         uses: docker/setup-buildx-action@v3
       
       - name: Build with Docker
+        env:
+          VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
         run: |
-          docker build -t portfolio .
+          docker build --build-arg VITE_GITHUB_TOKEN="${VITE_GITHUB_TOKEN}" -t portfolio .
           docker create --name temp-container portfolio
           mkdir -p ./dist
           docker cp temp-container:/usr/share/nginx/html/. ./dist/

@@ -3,6 +3,10 @@ FROM node:20-alpine as build
 
 WORKDIR /app
 
+# Accept build argument for GitHub token
+ARG VITE_GITHUB_TOKEN
+ENV VITE_GITHUB_TOKEN=$VITE_GITHUB_TOKEN
+
 # Copy package files and install dependencies
 COPY package.json package-lock.json ./
 RUN npm ci
