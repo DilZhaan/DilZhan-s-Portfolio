@@ -1,0 +1,55 @@
+{
+  "name": "DilZhan Yapa",
+  "initials": "DY",
+  "profileImage": "/src/assets/AboutMe/dp.png",
+  "title": "Software Engineering Student @ SLIIT",
+  "bio": "Full-Stack Developer specializing in building scalable solutions. Focused on DevOps practices and modern web technologies.",
+  "location": "Colombo, Sri Lanka",
+  "email": "dilzhanyapa@gmail.com",
+  "navigation": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "about",
+      "label": "About"
+    },
+    {
+      "id": "projects",
+      "label": "Portfolio"
+    },
+    {
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "id": "github-stats",
+      "label": "GitHub Stats"
+    },
+    {
+      "id": "skills",
+      "label": "Skills"
+    },
+    {
+      "id": "experience",
+      "label": "Experience"
+    },
+    {
+      "id": "education",
+      "label": "Education"
+    },
+    {
+      "id": "certifications",
+      "label": "Certifications"
+    },
+    {
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "id": "contact",
+      "label": "Contact"
+    }
+  ]
+}

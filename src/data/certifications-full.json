@@ -1,0 +1,56 @@
+{
+  "linkedInProfile": "dilzhaan",
+  "title": "Certifications",
+  "description": "Professional certifications and credentials",
+  "certifications": [
+    {
+      "id": 1,
+      "name": "Higher Diploma in Information Technology",
+      "issuer": "SLIIT",
+      "issueDate": "2025-07",
+      "credentialId": "HDPIT 9300",
+      "credentialUrl": "https://media.licdn.com/dms/image/v2/D562DAQHIeHHV1x8z8g/profile-treasury-image-shrink_1280_1280/B56ZmFuj.LI0AQ-/0/1758885207066?e=1764014400&v=beta&t=cUtHc-zVb-FpgTqbvCVJ8PYHoWVk9PEYWy0BZ5rPRGM",
+      "logo": "https://media.licdn.com/dms/image/v2/C560BAQEIerI4wDXA3w/company-logo_200_200/company-logo_200_200/0/1643683606979/sliit_logo?e=1764806400&v=beta&t=r4zcYpUPSuF6LrN3Uopuljg3SSJrmbHCCW-z_MA45Yw"
+    },
+    {
+      "id": 2,
+      "name": "Programming in Python - 1. Python for Beginners",
+      "issuer": "University of Moratuwa",
+      "issueDate": "2023-06",
+      "expiryDate": null,
+      "credentialId": "4g3aPOQrWh",
+      "credentialUrl": "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQF4Jo3PxJpuVw/company-logo_200_200/company-logo_200_200/0/1631307772357?e=1764806400&v=beta&t=ozZFQWmy09JwEF8zIMepoEbJoegSdKoLaehMOfwpXn8"
+    },
+    {
+      "id": 3,
+      "name": "CODL- Programming in Python - 2. Python Programming ",
+      "issuer": "University of Moratuwa",
+      "issueDate": "2023-12",
+      "expiryDate": null,
+      "credentialId": "kS2GtU96ug",
+      "credentialUrl": "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQF4Jo3PxJpuVw/company-logo_200_200/company-logo_200_200/0/1631307772357?e=1764806400&v=beta&t=ozZFQWmy09JwEF8zIMepoEbJoegSdKoLaehMOfwpXn8"
+    },
+    {
+      "id": 4,
+      "name": "CODL -Web Design for BeginnersCODL -Web Design for Beginners",
+      "issuer": "University of Moratuwa",
+      "issueDate": "2024-01",
+      "expiryDate": null,
+      "credentialId": "ljmU5WrMD3",
+      "credentialUrl": "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+      "logo": "https://media.licdn.com/dms/image/v2/C4D0BAQF4Jo3PxJpuVw/company-logo_200_200/company-logo_200_200/0/1631307772357?e=1764806400&v=beta&t=ozZFQWmy09JwEF8zIMepoEbJoegSdKoLaehMOfwpXn8"
+    },
+    {
+      "id": 5,
+      "name": "Multipass & VM Security: A Beginner’s GuideMultipass & VM Security: A Beginner’s Guide",
+      "issuer": "Udemy",
+      "issueDate": "2025-02",
+      "expiryDate": null,
+      "credentialId": "UC-3db49568-5447-499e-b209-865dd71174d7",
+      "credentialUrl": "https://www.udemy.com/certificate/UC-3db49568-5447-499e-b209-865dd71174d7/",
+      "logo": "https://media.licdn.com/dms/image/v2/D560BAQEf_NHzN2yVQg/company-logo_200_200/company-logo_200_200/0/1723593046388/udemy_logo?e=1764806400&v=beta&t=0q6uLfbnyt_LsRAXpQW1qw2xZJzq-yhEycMbXHZ-50Q"
+    }
+  ]
+}

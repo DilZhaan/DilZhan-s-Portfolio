@@ -1,0 +1,92 @@
+{
+  "sectionTitle": "Tech Stack",
+  "categories": [
+    {
+      "title": "Programming Languages",
+      "skills": [
+        {
+          "name": "Java",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original-wordmark.svg"
+        },
+        {
+          "name": "Python",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+        },
+        {
+          "name": "C",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
+        },
+        {
+          "name": "C++",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+        },
+        {
+          "name": "Kotlin",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original.svg"
+        },
+        {
+          "name": "JavaScript",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+        }
+      ]
+    },
+    {
+      "title": "Web & App Technologies",
+      "skills": [
+        {
+          "name": "React",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+        },
+        {
+          "name": "Node.js",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
+        },
+        {
+          "name": "Express",
+          "imageUrl": "https://raw.githubusercontent.com/DilZhaan/DilZhaan/main/express.svg"
+        },
+        {
+          "name": "MongoDB",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+        },
+        {
+          "name": "Flutter",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg"
+        },
+        {
+          "name": "Firebase",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-original.svg"
+        }
+      ]
+    },
+    {
+      "title": "DevOps & Tools",
+      "skills": [
+        {
+          "name": "Docker",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg"
+        },
+        {
+          "name": "Git",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg"
+        },
+        {
+          "name": "MySQL",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
+        },
+        {
+          "name": "HTML5",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"
+        },
+        {
+          "name": "CSS3",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-plain-wordmark.svg"
+        },
+        {
+          "name": "Tailwind",
+          "imageUrl": "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
+import heroData from "../../../../data/hero.json";
 
 function TypingAnimation() {
-  const phrases = [
-    "Dev Ops Engineer",
-    "Undergraduate Student",
-    "Full Stack Engineer",
-    "Software Engineer",
-  ];
+  const { typingTexts } = heroData;
+  const phrases = typingTexts;
 
   const [displayText, setDisplayText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);

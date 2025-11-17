@@ -1,0 +1,12 @@
+{
+  "title": "Blog Posts",
+  "mediumUsername": "dilzhan",
+  "mediumProfileUrl": "https://dilzhan.medium.com/",
+  "viewButtonText": "View on Medium",
+  "readMoreText": "Read more",
+  "loadingText": "Loading posts...",
+  "errorText": "Failed to load blog posts",
+  "noPostsText": "No blog posts found.",
+  "visitProfileText": "Visit my Medium profile →",
+  "maxPosts": 6
+}

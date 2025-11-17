@@ -1,311 +1,273 @@
-import { useEffect, useRef } from "react";
-import eComerceB from "../../../assets/Projects/ecommerce-front.jpg";
-import avanes from "../../../assets/Projects/avanes.jpg";
-import portfolio from "../../../assets/Projects/portfolio.jpg";
-import budgeteer from "../../../assets/Projects/budgetApp.png";
+import { useState, useEffect } from "react";
 
 function ProjectCard({ project }) {
+  // Extract topics/technologies from GitHub
+  const technologies = project.topics || [];
+  
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 h-full flex flex-col group">
-      <div className="aspect-video w-full overflow-hidden relative">
-        <img
-          src={project.image}
-          alt={`${project.name} preview`}
-          className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-4 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-            <h3 className="text-xl font-bold text-white">{project.name}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div className="p-6 flex-1 flex flex-col bg-white dark:bg-gray-800 relative">
-        {/* Diagonal corner accent */}
-        <div className="absolute top-0 right-0 w-12 h-12 bg-primary-100 dark:bg-primary-900 transform rotate-45 translate-x-6 -translate-y-6"></div>
-
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 relative z-10">
-          {project.name}
-        </h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1">
-          {project.description}
-        </p>
-        <div className="mb-4">
-          <h4 className="font-medium text-gray-900 dark:text-white mb-2">
-            Technologies
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="inline-block px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full transition-colors duration-300 hover:bg-primary-100 dark:hover:bg-primary-900"
-              >
-                {tech}
+    <article className="bg-[#111111] rounded-lg border border-gray-800 p-6 hover:border-gray-700 transition-all duration-300 group">
+      {/* Project Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors break-words">
+            {project.name}
+          </h3>
+          <div className="flex items-center gap-3 text-sm text-gray-500 flex-wrap">
+            {project.language && (
+              <div className="flex items-center gap-1.5">
+                <span 
+                  className="w-3 h-3 rounded-full flex-shrink-0" 
+                  style={{ backgroundColor: getLanguageColor(project.language) }}
+                ></span>
+                <span className="truncate">{project.language}</span>
+              </div>
+            )}
+            {project.private && (
+              <span className="px-2 py-0.5 text-xs bg-gray-800 text-gray-400 rounded border border-gray-700 flex-shrink-0">
+                Private
               </span>
-            ))}
-          </div>
-        </div>
-        
-        {/* Action buttons container */}
-        <div className="flex flex-col gap-3">
-          {/* GitHub buttons */}
-          <div className="flex flex-col gap-2">
-            {Array.isArray(project.github) ? (
-              // Multiple GitHub repositories
-              project.github.map((githubUrl, index) => (
-                <a
-                  key={index}
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  <span>
-                    {index === 0 ? "Backend" : index === 1 ? "Frontend" : `Repo ${index + 1}`}
-                  </span>
-                </a>
-              ))
-            ) : (
-              // Single GitHub repository
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
             )}
           </div>
-
-          {/* Live demo button */}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all duration-300 transform hover:translate-y-[-2px] shadow-sm hover:shadow-md"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15,3 21,3 21,9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              <span>Live Demo</span>
-            </a>
-          )}
         </div>
       </div>
-    </div>
+
+      {/* Project Description */}
+      <div className="mb-4">
+        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+          {project.description || 'No description available'}
+        </p>
+      </div>
+
+      {/* GitHub Stats */}
+      <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+        {project.stargazers_count > 0 && (
+          <div className="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+            </svg>
+            <span>{project.stargazers_count}</span>
+          </div>
+        )}
+        {project.forks_count > 0 && (
+          <div className="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm0 2.122a2.25 2.25 0 1 0-1.5 0v.878A2.25 2.25 0 0 0 5.75 8.5h1.5v2.128a2.251 2.251 0 1 0 1.5 0V8.5h1.5a2.25 2.25 0 0 0 2.25-2.25v-.878a2.25 2.25 0 1 0-1.5 0v.878a.75.75 0 0 1-.75.75h-4.5A.75.75 0 0 1 5 6.25v-.878zm3.75 7.378a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm3-8.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+            </svg>
+            <span>{project.forks_count}</span>
+          </div>
+        )}
+        {project.open_issues_count > 0 && (
+          <div className="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/>
+            </svg>
+            <span>{project.open_issues_count}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Technologies/Topics */}
+      {technologies.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-5">
+          {technologies.slice(0, 5).map((tech, index) => (
+            <span
+              key={index}
+              className="text-xs px-2.5 py-1 bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors break-all"
+            >
+              {tech}
+            </span>
+          ))}
+          {technologies.length > 5 && (
+            <span className="text-xs px-2.5 py-1 bg-gray-800/50 text-gray-400 rounded-md border border-gray-700/50 flex-shrink-0">
+              +{technologies.length - 5}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Links */}
+      <div className="flex gap-4 pt-3 border-t border-gray-800">
+        <a
+          href={project.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span>Code</span>
+        </a>
+        {project.homepage && (
+          <a
+            href={project.homepage}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            <span>Live Demo</span>
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
 
-function Projects() {
-  const projectsRef = useRef(null);
+// Language color mapping
+function getLanguageColor(language) {
+  const colors = {
+    JavaScript: '#f1e05a',
+    TypeScript: '#3178c6',
+    Python: '#3572A5',
+    Java: '#b07219',
+    'C++': '#f34b7d',
+    C: '#555555',
+    Go: '#00ADD8',
+    Rust: '#dea584',
+    PHP: '#4F5D95',
+    Ruby: '#701516',
+    Swift: '#F05138',
+    Kotlin: '#A97BFF',
+    Dart: '#00B4AB',
+    HTML: '#e34c26',
+    CSS: '#563d7c',
+    Shell: '#89e051',
+    Vue: '#41b883',
+    React: '#61dafb'
+  };
+  return colors[language] || '#8b949e';
+}
 
-  const projects = [
-    {
-      name: "E-Commerce Platform (Full Stack)",
-      image: eComerceB, 
-      description:
-        "Engineered a comprehensive e-commerce platform with a robust Node.js/Express backend and a feature-complete React/Redux frontend. Implemented RESTful API endpoints, MongoDB data modeling, and secure user authentication using JWT. Developed responsive UI components for product browsing, cart management, and checkout, with Tailwind CSS for design. Integrated backend services for inventory management, order processing, and payment gateway. Employed advanced security measures, error handling, and middleware for request validation. Optimized performance across the stack with caching, lazy loading, code splitting, and thorough API documentation and unit tests to ensure reliability and maintainability.",
-      technologies: [
-        "MongoDB",
-        "Express",
-        "Node.js",
-        "React",
-        "Redux",
-        "Tailwind CSS",
-        "JWT",
-        "WebSockets",
-      ],
-      github: [
-        "https://github.com/DilZhaan/E-Commerce-Sys-BackEnd-MERN",
-        "https://github.com/DilZhaan/E-Commerce-Sys-FrontEnd-MERN",
-      ],
-      live: "https://store.dilzhan.online",
-    },
-    {
-      name: "AVANES Vision - AI Voice Assistant Net Exam System",
-      image: avanes,
-      description:
-        "Architected an innovative education platform combining Java Spring Boot backend and React frontend to revolutionize accessibility. Implemented voice commands using WebSockets and Vosk for hands-free navigation, plus text-to-speech for content delivery. Created secure authentication using JWT, device fingerprinting, and IP verification. Developed a comprehensive assessment system including automatic grading, progress tracking, and administrative controls. Applied accessibility-first design throughout, ensuring WCAG compliance while creating a responsive UI using Tailwind CSS and Framer Motion.",
-      technologies: [
-        "Java Spring Boot",
-        "React",
-        "WebSockets",
-        "JWT",
-        "Tailwind CSS",
-        "Framer Motion",
-        "Vosk",
-      ],
-      github: "https://github.com/AVANES-Vision",
-    },
-    {
-      name: "Modern Portfolio Site",
-      image: portfolio,
-      description:
-        "A responsive and modern portfolio website built using React and Tailwind CSS. Features clean architecture, responsive design, and CI/CD deployment pipeline. Showcases my skills and projects with an emphasis on DevOps and full-stack development.",
-      technologies: ["React", "Tailwind CSS", "Vite", "GitHub Pages"],
-      github: "https://github.com/DilZhaan/DilZhan-s-Portfolio",
-    },
-    {
-      name: "Budgeteer – Financial Tracking App",
-      image: budgeteer,
-      description:
-        "Developed a user-friendly financial tracking app designed to help individuals manage income, expenses, and budgets efficiently. Budgeteer empowers users to set savings goals, analyze spending habits, and generate detailed financial reports. Features include real-time transaction tracking, category analysis, secure data storage, and a clean interface for intuitive navigation. Available for Android and iOS, Budgeteer makes financial management simple and accessible.",
-      technologies: ["Kotlin", "Android"],
-      github: "https://github.com/DilZhaan/Budgeteer-Financial-Tracking-App",
-    },
-  ];
+function Projects() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const INITIAL_DISPLAY = 6;
+
+  const displayedProjects = showAll ? projects : projects.slice(0, INITIAL_DISPLAY);
+  const hasMoreProjects = projects.length > INITIAL_DISPLAY;
 
   useEffect(() => {
-    if (!projectsRef.current) return;
+    const fetchGitHubProjects = async () => {
+      const GITHUB_USERNAME = 'DilZhaan';
+      const EXCLUDED_REPOS = ['DilZhaan']; // Add repos to exclude
+      
+      try {
+        setLoading(true);
+        
+        // Fetch all repositories
+        const response = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`
+        );
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch repositories');
+        }
+        
+        const repos = await response.json();
+        
+        // Filter and enhance repos
+        const filteredRepos = repos
+          .filter(repo => {
+            // Exclude specific repos
+            if (EXCLUDED_REPOS.includes(repo.name)) return false;
+            // Exclude forks (optional - remove this line to include forks)
+            if (repo.fork) return false;
+            return true;
+          })
+          .map(repo => ({
+            id: repo.id,
+            name: repo.name,
+            description: repo.description,
+            html_url: repo.html_url,
+            homepage: repo.homepage,
+            language: repo.language,
+            stargazers_count: repo.stargazers_count,
+            forks_count: repo.forks_count,
+            open_issues_count: repo.open_issues_count,
+            topics: repo.topics,
+            private: repo.private,
+            created_at: repo.created_at,
+            updated_at: repo.updated_at
+          }));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100");
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        setProjects(filteredRepos);
+      } catch (err) {
+        console.error('Error fetching GitHub projects:', err);
+        setError('Failed to load projects from GitHub');
+      } finally {
+        setLoading(false);
       }
-    );
-
-    const projectElements =
-      projectsRef.current.querySelectorAll(".project-card");
-    projectElements.forEach((element) => observer.observe(element));
-
-    return () => {
-      projectElements.forEach((element) => observer.unobserve(element));
     };
+
+    fetchGitHubProjects();
   }, []);
 
   return (
-    <div
-      id="projects"
-      className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 overflow-hidden"
-    >
-      {/* Decorative elements */}
-      <div className="absolute top-10 left-0 w-64 h-64 bg-primary-100 dark:bg-primary-900/20 rounded-full blur-3xl opacity-30 -translate-x-1/2"></div>
-      <div className="absolute bottom-10 right-0 w-64 h-64 bg-purple-100 dark:bg-purple-900/20 rounded-full blur-3xl opacity-30 translate-x-1/2"></div>
+    <section id="projects" className="py-16">
+      <div className="max-w-3xl mx-auto px-4">
+        <div className="mb-12">
+          <h2 className="text-3xl font-semibold text-white mb-2">Projects</h2>
+          <p className="text-gray-400">
+            A curated collection of my software development projects from GitHub
+          </p>
+        </div>
 
-      {/* Decorative lines */}
-      <div className="absolute right-10 top-10 opacity-20 dark:opacity-10 pointer-events-none">
-        <svg
-          width="100"
-          height="100"
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 50H100"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            strokeDasharray="4 4"
-          />
-          <path
-            d="M50 0L50 100"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            strokeDasharray="4 4"
-          />
-          <path
-            d="M0 0L100 100"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            strokeDasharray="4 4"
-          />
-          <path
-            d="M100 0L0 100"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            strokeDasharray="4 4"
-          />
-        </svg>
-      </div>
+      {loading && (
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+        </div>
+      )}
 
-      <div className="text-center mb-12 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white inline-block relative">
-          Projects
-          <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 h-1 w-16 md:w-24 bg-primary-500 dark:bg-primary-400 rounded-full"></div>
-        </h2>
-      </div>
+      {error && (
+        <div className="text-center py-20">
+          <p className="text-gray-400">{error}</p>
+        </div>
+      )}
 
-      <div
-        ref={projectsRef}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-10 relative z-10"
-      >
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="project-card opacity-0 translate-y-10 transition-all duration-700 ease-out"
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            <ProjectCard project={project} />
+      {!loading && !error && projects.length > 0 && (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {displayedProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </div>
-        ))}
-      </div>
+          
+          {hasMoreProjects && (
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="px-8 py-3 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-800 hover:border-gray-600 transition-colors flex items-center gap-2"
+              >
+                <span>{showAll ? 'Show Less' : 'Show More'}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-5 w-5 transition-transform ${showAll ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          )}
+        </>
+      )}
 
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <pattern
-            id="circleGrid"
-            x="0"
-            y="0"
-            width="40"
-            height="40"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="20" cy="20" r="1" fill="currentColor" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#circleGrid)" />
-        </svg>
+      {!loading && !error && projects.length === 0 && (
+        <div className="text-center py-20">
+          <p className="text-gray-400">No projects found on GitHub</p>
+        </div>
+      )}
       </div>
-    </div>
+    </section>
   );
 }
 

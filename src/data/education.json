@@ -1,0 +1,26 @@
+{
+  "sectionTitle": "Education",
+  "degrees": [
+    {
+      "university": "Sri Lanka Institute of Information Technology",
+      "name": "BSc (Hons) in Information Technology Specialising in Software Engineering",
+      "year": "2023 - 2027",
+      "description": "Software engineering is the discipline of designing, creating and maintaining software by applying technologies and practices from computer science, project management, engineering, application domains, interface design, digital asset management and other fields. The program combines strong theoretical foundations with practical development experience, covering modern software engineering methodologies, cloud infrastructure, and DevOps practices.",
+      "keyCourses": [
+        "Software Architecture & Design Patterns",
+        "Cloud Computing & Distributed Systems",
+        "DevOps Practices & CI/CD Pipelines",
+        "Agile Project Management",
+        "Database Systems & Data Modeling",
+        "Web Application Development",
+        "Mobile Application Development",
+        "System Requirements Engineering",
+        "Software Quality Assurance & Testing",
+        "Human-Computer Interaction",
+        "Software Project Management",
+        "Artificial Intelligence & Machine Learning"
+      ],
+      "logo": "https://www.sliit.lk/sjhs/images/SLIIT_Logo_Crest.png"
+    }
+  ]
+}

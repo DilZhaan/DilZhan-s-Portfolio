@@ -1,0 +1,27 @@
+{
+  "sectionTitle": "Work Experience",
+  "experiences": [
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "company": "HashBaze",
+      "employmentType": "Internship",
+      "location": "Colombo, Western Province, Sri Lanka · Remote",
+      "startDate": "2025-09-01",
+      "endDate": null,
+      "current": true,
+      "description": "Gaining hands-on experience in full-stack development, contributing to both backend and frontend projects. Playing a key role in building scalable applications, implementing new features, and supporting continuous improvement initiatives. Collaborating in an agile team environment, actively participating in code reviews, sprint planning, and delivering reliable solutions to real-world challenges.",
+      "skills": [
+        "Full-Stack Development",
+        "Node.js",
+        "Next.js",
+        "Nest.js",
+        "React.js",
+        "GraphQL",
+        "Agile Development",
+        "Feature Implementation"
+      ],
+      "logo": null
+    }
+  ]
+}

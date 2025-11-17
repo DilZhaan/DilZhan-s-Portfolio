@@ -1,80 +1,49 @@
 import HomePage from "../components/sections/HomePage/HomePage.jsx";
 import NavigationBar from "../components/Navigation_Bar/NavigationBar.jsx";
+import ProfileSidebar from "../components/ProfileSidebar/ProfileSidebar.jsx";
 import AboutMe from "../components/sections/AboutMe/AboutMe.jsx";
 import Projects from "../components/sections/Projects/Projects.jsx";
 import Skills from "../components/sections/Skills/Skills.jsx";
+import GitHubStats from "../components/sections/GitHubStats/GitHubStats.jsx";
+import Experience from "../components/sections/Experience/Experience.jsx";
 import Education from "../components/sections/Education/Education.jsx";
+import Certifications from "../components/sections/Certifications/Certifications.jsx";
+import Blog from "../components/sections/Blog/Blog.jsx";
 import Contact from "../components/sections/Contact/Contact.jsx";
 import Footer from "../components/Footer/Footer.jsx";
-import { useEffect } from "react";
 
 function Main() {
-  // Force dark mode and setup smooth scrolling
-  useEffect(() => {
-    // Add dark class to HTML element
-    document.documentElement.classList.add('dark');
-    
-    // Ensure proper scroll behavior is set
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Improve navigation by adding proper scroll handling
-    const handleAnchorClick = (e) => {
-      const href = e.target.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          // Scroll with offset for fixed header
-          const headerOffset = 80;
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    };
-
-    // Add event listeners to all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick);
-    });
-
-    // Log section IDs for debugging
-    console.log("Checking sections in document:");
-    ["home", "about", "projects", "skills", "education", "contact"].forEach(id => {
-      const element = document.getElementById(id);
-      console.log(`Section ${id}: ${element ? 'Found' : 'Not found'}`);
-    });
-
-    // Cleanup event listeners
-    return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick);
-      });
-    };
-  }, []);
-
   return (
-    <div className="bg-dark-800 text-gray-100 min-h-screen">
-      <div className="fixed top-0 left-0 w-full z-50">
-        <NavigationBar />
-      </div>
+    <div className="bg-[#0a0a0a] text-gray-100 min-h-screen">
+      <NavigationBar />
       
-      {/* Add padding-top to first section to account for fixed header */}
+      {/* Main Content Area with Two-Column Layout */}
       <div className="pt-16">
-        <HomePage />
-      </div>
-      
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AboutMe />
-        <Projects />
-        <Skills />
-        <Education />
-        <Contact />
+        {/* Hero Section - Full Width */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <HomePage />
+        </div>
+        
+        {/* Two-Column Layout for Main Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-0">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar */}
+            <ProfileSidebar />
+            
+            {/* Main Content */}
+            <main className="flex-1 min-w-0">
+              <AboutMe />
+              <Projects />
+              <Blog />
+              <GitHubStats />
+              <Skills />
+              <Experience />
+              <Education />
+              <Certifications />
+              <Contact />
+            </main>
+          </div>
+        </div>
       </div>
       
       <Footer />
