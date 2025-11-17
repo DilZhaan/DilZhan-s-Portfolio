@@ -22,7 +22,9 @@ function GitHubStats() {
   }, []);
 
   const fetchGitHubStats = async () => {
-    const CACHE_KEY = 'github_stats_cache';
+    const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+    // Use different cache keys for authenticated vs unauthenticated requests
+    const CACHE_KEY = GITHUB_TOKEN ? 'github_stats_cache_auth' : 'github_stats_cache_public';
     const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
     
     try {
@@ -41,8 +43,17 @@ function GitHubStats() {
         }
       }
       
+      // Prepare headers with authentication if token exists
+      const headers = {};
+      if (GITHUB_TOKEN) {
+        headers.Authorization = `token ${GITHUB_TOKEN}`;
+      }
+      
       // Fetch user data
-      const userResponse = await fetch(`https://api.github.com/users/${githubUsername}`);
+      const userResponse = await fetch(
+        `https://api.github.com/users/${githubUsername}`,
+        { headers }
+      );
       if (!userResponse.ok) {
         // If rate limited, try to use expired cache or dummy data
         if (cachedData) {
@@ -55,8 +66,12 @@ function GitHubStats() {
       }
       const userData = await userResponse.json();
 
-      // Fetch all repositories
-      const reposResponse = await fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`);
+      // Fetch all repositories (both public and private if token has repo scope)
+      const reposEndpoint = GITHUB_TOKEN
+        ? `https://api.github.com/user/repos?per_page=100&affiliation=owner`
+        : `https://api.github.com/users/${githubUsername}/repos?per_page=100`;
+      
+      const reposResponse = await fetch(reposEndpoint, { headers });
       if (!reposResponse.ok) throw new Error('Failed to fetch repositories');
       const repos = await reposResponse.json();
 
@@ -66,7 +81,10 @@ function GitHubStats() {
       const publicRepos = repos.filter(repo => !repo.fork).length;
 
       // Fetch recent activity (events)
-      const eventsResponse = await fetch(`https://api.github.com/users/${githubUsername}/events/public?per_page=100`);
+      const eventsResponse = await fetch(
+        `https://api.github.com/users/${githubUsername}/events/public?per_page=100`,
+        { headers }
+      );
       let recentCommits = 0;
       let contributionStreak = 0;
       let longestStreak = 0;
