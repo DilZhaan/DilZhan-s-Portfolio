@@ -22,12 +22,37 @@ function GitHubStats() {
   }, []);
 
   const fetchGitHubStats = async () => {
+    const CACHE_KEY = 'github_stats_cache';
+    const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+    
     try {
       setLoading(true);
       
+      // Check cache first
+      const cachedData = localStorage.getItem(CACHE_KEY);
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        const isExpired = Date.now() - timestamp > CACHE_DURATION;
+        
+        if (!isExpired) {
+          setStats(data);
+          setLoading(false);
+          return;
+        }
+      }
+      
       // Fetch user data
       const userResponse = await fetch(`https://api.github.com/users/${githubUsername}`);
-      if (!userResponse.ok) throw new Error('Failed to fetch user data');
+      if (!userResponse.ok) {
+        // If rate limited, try to use expired cache or dummy data
+        if (cachedData) {
+          const { data } = JSON.parse(cachedData);
+          setStats(data);
+          setLoading(false);
+          return;
+        }
+        throw new Error('Failed to fetch user data');
+      }
       const userData = await userResponse.json();
 
       // Fetch all repositories
@@ -104,6 +129,22 @@ function GitHubStats() {
         longestStreak: longestStreak || dummyData.longestStreak,
         profileCreated: userData.created_at
       });
+
+      // Cache the stats
+      localStorage.setItem(CACHE_KEY, JSON.stringify({
+        data: {
+          totalRepos: publicRepos,
+          totalStars,
+          totalForks,
+          followers: userData.followers,
+          following: userData.following,
+          recentCommits: recentCommits || dummyData.recentCommits,
+          contributionStreak: contributionStreak || dummyData.currentStreak,
+          longestStreak: longestStreak || dummyData.longestStreak,
+          profileCreated: userData.created_at
+        },
+        timestamp: Date.now()
+      }));
 
     } catch (err) {
       console.error('Error fetching GitHub stats:', err);

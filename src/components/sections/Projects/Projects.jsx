@@ -157,9 +157,24 @@ function Projects() {
     const fetchGitHubProjects = async () => {
       const GITHUB_USERNAME = 'DilZhaan';
       const EXCLUDED_REPOS = ['DilZhaan']; // Add repos to exclude
+      const CACHE_KEY = 'github_projects_cache';
+      const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
       
       try {
         setLoading(true);
+        
+        // Check cache first
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        if (cachedData) {
+          const { data, timestamp } = JSON.parse(cachedData);
+          const isExpired = Date.now() - timestamp > CACHE_DURATION;
+          
+          if (!isExpired) {
+            setProjects(data);
+            setLoading(false);
+            return;
+          }
+        }
         
         // Fetch all repositories
         const response = await fetch(
@@ -167,6 +182,13 @@ function Projects() {
         );
         
         if (!response.ok) {
+          // If rate limited, try to use expired cache
+          if (cachedData) {
+            const { data } = JSON.parse(cachedData);
+            setProjects(data);
+            setLoading(false);
+            return;
+          }
           throw new Error('Failed to fetch repositories');
         }
         
@@ -196,6 +218,12 @@ function Projects() {
             created_at: repo.created_at,
             updated_at: repo.updated_at
           }));
+
+        // Cache the filtered repos
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          data: filteredRepos,
+          timestamp: Date.now()
+        }));
 
         setProjects(filteredRepos);
       } catch (err) {
