@@ -215,7 +215,7 @@ function GitHubStats() {
         </p>
 
         {/* Top Stats Grid */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {/* Last 30 Days */}
           <div className="border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors">
             <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">
@@ -286,7 +286,7 @@ function GitHubStats() {
         </div>
 
         {/* Additional Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           <div className="border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors">
             <div className="text-2xl font-bold text-white mb-1">
               {stats.totalRepos}

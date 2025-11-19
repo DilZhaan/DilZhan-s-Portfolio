@@ -21,7 +21,7 @@ function ProfileSidebar() {
   };
 
   return (
-    <aside className="w-full lg:w-80 lg:sticky lg:top-24 h-fit">
+    <aside className="hidden lg:block w-full lg:w-80 lg:sticky lg:top-24 h-fit">
       <div className="bg-[#111111] rounded-lg p-6 border border-gray-800">
         {/* Profile Image */}
         <div className="mb-6">

@@ -314,7 +314,7 @@ function Projects() {
 
       {!loading && !error && projects.length > 0 && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5">
             {displayedProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -34,7 +34,7 @@ function HomePage() {
           {description}
         </p>
         
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 mb-16">
           {buttons.map((button, index) => {
             if (button.download) {
               return (
@@ -42,7 +42,7 @@ function HomePage() {
                   key={index}
                   href={button.link} 
                   download
-                  className={`px-8 py-3 font-medium rounded-lg transition-colors ${
+                  className={`px-6 sm:px-8 py-3 font-medium rounded-lg transition-colors text-sm sm:text-base ${
                     button.type === 'primary' 
                       ? 'bg-white text-black hover:bg-gray-200' 
                       : 'border border-gray-700 text-gray-300 hover:bg-gray-800 hover:border-gray-600'
@@ -56,7 +56,7 @@ function HomePage() {
               <button 
                 key={index}
                 onClick={() => scrollToSection(button.scrollTo)}
-                className={`px-8 py-3 font-medium rounded-lg transition-colors ${
+                className={`px-6 sm:px-8 py-3 font-medium rounded-lg transition-colors text-sm sm:text-base ${
                   button.type === 'primary' 
                     ? 'bg-white text-black hover:bg-gray-200' 
                     : 'border border-gray-700 text-gray-300 hover:bg-gray-800 hover:border-gray-600'

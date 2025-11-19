@@ -27,11 +27,11 @@ function Main() {
         {/* Two-Column Layout for Main Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-0">
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar */}
+            {/* Sidebar - Hidden on mobile, visible on lg+ */}
             <ProfileSidebar />
             
-            {/* Main Content */}
-            <main className="flex-1 min-w-0">
+            {/* Main Content - Full width on mobile, partial width on desktop */}
+            <main className="flex-1 min-w-0 w-full">
               <AboutMe />
               <Projects />
               <Blog />
