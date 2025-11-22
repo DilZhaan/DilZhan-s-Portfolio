@@ -33,6 +33,9 @@ function GitHubStats() {
     try {
       setLoading(true);
       
+      console.log('🔍 Fetching GitHub stats for:', githubUsername);
+      console.log('🔑 Token present:', !!GITHUB_TOKEN);
+      
       // Check cache first
       const cachedData = localStorage.getItem(CACHE_KEY);
       if (cachedData) {
@@ -40,9 +43,12 @@ function GitHubStats() {
         const isExpired = Date.now() - timestamp > CACHE_DURATION;
         
         if (!isExpired) {
+          console.log('✅ Using cached data');
           setStats(data);
           setLoading(false);
           return;
+        } else {
+          console.log('⏰ Cache expired, fetching fresh data');
         }
       }
       
@@ -57,17 +63,32 @@ function GitHubStats() {
         `https://api.github.com/users/${githubUsername}`,
         { headers }
       );
+      
+      // Log rate limit info
+      const rateLimitRemaining = userResponse.headers.get('X-RateLimit-Remaining');
+      const rateLimitReset = userResponse.headers.get('X-RateLimit-Reset');
+      console.log(`📊 Rate Limit Remaining: ${rateLimitRemaining}`);
+      if (rateLimitReset) {
+        const resetTime = new Date(rateLimitReset * 1000);
+        console.log(`⏱️ Rate Limit Resets at: ${resetTime.toLocaleTimeString()}`);
+      }
+      
       if (!userResponse.ok) {
+        console.error('❌ Failed to fetch user data:', userResponse.status, userResponse.statusText);
         // If rate limited, try to use expired cache or dummy data
+        if (userResponse.status === 403) {
+          console.warn('⚠️ Rate limit exceeded! Using cached data if available.');
+        }
         if (cachedData) {
           const { data } = JSON.parse(cachedData);
           setStats(data);
           setLoading(false);
           return;
         }
-        throw new Error('Failed to fetch user data');
+        throw new Error(`Failed to fetch user data: ${userResponse.statusText}`);
       }
       const userData = await userResponse.json();
+      console.log('✅ User data fetched successfully');
 
       // Fetch all repositories (both public and private if token has repo scope)
       const reposEndpoint = GITHUB_TOKEN
@@ -75,8 +96,12 @@ function GitHubStats() {
         : `https://api.github.com/users/${githubUsername}/repos?per_page=100`;
       
       const reposResponse = await fetch(reposEndpoint, { headers });
-      if (!reposResponse.ok) throw new Error('Failed to fetch repositories');
+      if (!reposResponse.ok) {
+        console.error('❌ Failed to fetch repositories:', reposResponse.status);
+        throw new Error('Failed to fetch repositories');
+      }
       const repos = await reposResponse.json();
+      console.log(`✅ Fetched ${repos.length} repositories`);
 
       // Calculate total stars, forks, and repos
       const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
@@ -139,7 +164,7 @@ function GitHubStats() {
         }
       }
 
-      setStats({
+      const statsData = {
         totalRepos: publicRepos,
         totalStars,
         totalForks,
@@ -149,7 +174,10 @@ function GitHubStats() {
         contributionStreak: contributionStreak || dummyData.currentStreak,
         longestStreak: longestStreak || dummyData.longestStreak,
         profileCreated: userData.created_at
-      });
+      };
+      
+      console.log('📈 Final Stats:', statsData);
+      setStats(statsData);
 
       // Cache the stats
       localStorage.setItem(CACHE_KEY, JSON.stringify({
