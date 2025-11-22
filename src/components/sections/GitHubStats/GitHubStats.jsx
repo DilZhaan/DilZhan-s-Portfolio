@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import githubStatsConfig from '../../../data/githubStats.json';
+import profileData from '../../../data/profile.json';
 
 function GitHubStats() {
   const [stats, setStats] = useState(null);
@@ -9,12 +10,14 @@ function GitHubStats() {
   const { 
     title, 
     description, 
-    githubUsername, 
     labels, 
     dummyData, 
     errorMessage, 
     activityBars 
   } = githubStatsConfig;
+  
+  // Get GitHub username from profile
+  const githubUsername = profileData.social.github.username;
 
   useEffect(() => {
     fetchGitHubStats();

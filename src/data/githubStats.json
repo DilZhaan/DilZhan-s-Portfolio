@@ -1,7 +1,6 @@
 {
   "title": "Contribution Overview",
   "description": "Real-time insights powered by the GitHub API. Monochrome, minimal, and updated automatically from the self-hosted endpoints.",
-  "githubUsername": "DilZhaan",
   "labels": {
     "last30Days": "Last 30 Days",
     "currentStreak": "Current Streak",

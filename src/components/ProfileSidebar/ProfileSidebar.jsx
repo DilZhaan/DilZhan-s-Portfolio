@@ -3,7 +3,7 @@ import navigationData from "../../data/navigation.json";
 import profilePic from "../../assets/AboutMe/dp.png";
 
 function ProfileSidebar() {
-  const { name, title, bio } = profileData;
+  const { name, title, bio } = profileData.personal;
   const { navigation } = navigationData;
 
   const scrollToSection = (sectionId) => {

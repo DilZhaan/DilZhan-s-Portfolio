@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import certificationsData from '../../../data/certifications-full.json';
+import profileData from '../../../data/profile.json';
 
 const CertificationCard = ({ cert, isLast }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -120,7 +121,9 @@ const Certifications = () => {
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
 
-  const { title, linkedInProfile } = certificationsData;
+  const { title } = certificationsData;
+  // Get LinkedIn profile from centralized profile data
+  const linkedInProfile = profileData.social.linkedin.username;
 
   useEffect(() => {
     // Load certifications from JSON file

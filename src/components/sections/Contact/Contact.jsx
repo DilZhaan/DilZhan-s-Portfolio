@@ -1,7 +1,17 @@
-import contactData from "../../../data/contact.json";
+import profileData from "../../../data/profile.json";
 
 function Contact() {
-  const { sectionTitle, phone, email, findMeText, socials } = contactData;
+  const { sectionTitle, findMeText } = profileData.contactSection;
+  const { email } = profileData.contact;
+  const phone = null; // No phone in data
+  
+  // Convert social object to array format
+  const socials = [
+    { name: "LinkedIn", url: profileData.social.linkedin.url },
+    { name: "Instagram", url: profileData.social.instagram.url },
+    { name: "GitHub", url: profileData.social.github.url },
+    { name: "Medium", url: profileData.social.medium.url }
+  ];
 
   // Icon components
   const socialIcons = {

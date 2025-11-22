@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import blogConfig from "../../../data/blog.json";
+import profileData from "../../../data/profile.json";
 
 function BlogCard({ post, readMoreText }) {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -67,8 +68,6 @@ function Blog() {
 
   const {
     title,
-    mediumUsername,
-    mediumProfileUrl,
     viewButtonText,
     readMoreText,
     errorText,
@@ -76,6 +75,10 @@ function Blog() {
     visitProfileText,
     maxPosts
   } = blogConfig;
+  
+  // Get Medium data from profile
+  const mediumUsername = profileData.social.medium.username;
+  const mediumProfileUrl = profileData.social.medium.url;
 
   const displayedPosts = showAll ? posts : posts.slice(0, maxPosts);
   const hasMorePosts = posts.length > maxPosts;

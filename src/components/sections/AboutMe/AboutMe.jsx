@@ -1,8 +1,8 @@
 import profilePic from "../../../assets/AboutMe/dp.png";
-import aboutData from "../../../data/about.json";
+import profileData from "../../../data/profile.json";
 
 function AboutMe() {
-  const { title, paragraphs, badges, highlightText } = aboutData;
+  const { title, paragraphs, badges, highlightText } = profileData.about;
 
   return (
     <section id="about" className="py-20">

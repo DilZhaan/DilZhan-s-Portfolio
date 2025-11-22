@@ -1,9 +1,73 @@
 {
-  "name": "DilZhan Yapa",
-  "initials": "DY",
-  "profileImage": "/src/assets/AboutMe/dp.png",
-  "title": "Software Engineering Student @ SLIIT",
-  "bio": "Full-Stack Developer specializing in building scalable solutions. Focused on DevOps practices and modern web technologies.",
-  "location": "Colombo, Sri Lanka",
-  "email": "dilzhanyapa@gmail.com"
+  "personal": {
+    "name": "DilZhan Yapa",
+    "initials": "DY",
+    "title": "Software Engineering Student @ SLIIT",
+    "bio": "Full-Stack Developer specializing in building scalable solutions. Focused on DevOps practices and modern web technologies.",
+    "location": "Colombo, Sri Lanka",
+    "profileImage": "/src/assets/AboutMe/dp.png"
+  },
+  "contact": {
+    "email": "contact@dilzhan.com",
+    "alternateEmail": "dilzhanyapa@gmail.com"
+  },
+  "social": {
+    "github": {
+      "username": "DilZhaan",
+      "url": "https://github.com/DilZhaan"
+    },
+    "linkedin": {
+      "username": "dilzhaan",
+      "url": "https://www.linkedin.com/in/dilzhaan"
+    },
+    "medium": {
+      "username": "dilzhan",
+      "url": "https://dilzhan.medium.com/"
+    },
+    "instagram": {
+      "username": "dilzhaaan",
+      "url": "https://www.instagram.com/dilzhaaan/"
+    }
+  },
+  "about": {
+    "title": "About me",
+    "paragraphs": [
+      "I'm a versatile Software Engineering undergraduate at the Sri Lanka Institute of Information Technology with a dual focus on Full-Stack Development and DevOps Engineering. My approach combines academic knowledge with hands-on experience to create end-to-end solutions that are both user-friendly and operationally robust.",
+      "Where others see development and operations as separate domains, I bridge these worlds by embracing both the creative aspects of front-end development and the systematic approach of infrastructure automation. My projects demonstrate not just functional solutions, but thoughtfully architected systems that connect responsive interfaces with reliable backends while implementing DevOps best practices for seamless deployment and scaling."
+    ],
+    "badges": [
+      "DevOps Engineer",
+      "Full Stack Developer",
+      "CI/CD Specialist",
+      "Cloud Enthusiast"
+    ],
+    "highlightText": "Sri Lanka Institute of Information Technology"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "typingTexts": [
+      "Dev Ops Engineer",
+      "Undergraduate Student",
+      "Full Stack Engineer",
+      "Software Engineer"
+    ],
+    "description": "Software Engineering student at SLIIT passionate about building modern web applications and exploring DevOps practices.",
+    "buttons": [
+      {
+        "text": "Download CV",
+        "type": "primary",
+        "link": "/DilZhanYapa_CV.pdf",
+        "download": true
+      },
+      {
+        "text": "Get in Touch",
+        "type": "secondary",
+        "scrollTo": "contact"
+      }
+    ]
+  },
+  "contactSection": {
+    "sectionTitle": "Get in Touch",
+    "findMeText": "Find me on"
+  }
 }

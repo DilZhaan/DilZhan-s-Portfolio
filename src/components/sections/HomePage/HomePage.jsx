@@ -1,8 +1,9 @@
 import TypingAnimation from "./Typing_Automation/TypingAnimation";
-import heroData from "../../../data/hero.json";
+import profileData from "../../../data/profile.json";
 
 function HomePage() {
-  const { greeting, name, description, buttons } = heroData;
+  const { greeting, description, buttons } = profileData.hero;
+  const { name } = profileData.personal;
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);

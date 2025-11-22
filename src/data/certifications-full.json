@@ -1,5 +1,4 @@
 {
-  "linkedInProfile": "dilzhaan",
   "title": "Certifications",
   "description": "Professional certifications and credentials",
   "certifications": [
@@ -44,7 +43,7 @@
     },
     {
       "id": 5,
-      "name": "Multipass & VM Security: A Beginner’s GuideMultipass & VM Security: A Beginner’s Guide",
+      "name": "Multipass & VM Security: A Beginner's GuideMultipass & VM Security: A Beginner's Guide",
       "issuer": "Udemy",
       "issueDate": "2025-02",
       "expiryDate": null,

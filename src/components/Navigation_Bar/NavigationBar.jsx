@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import navigationData from "../../data/navigation.json";
+import profileData from "../../data/profile.json";
 
 function NavigationBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { navigation } = navigationData;
+  const { name } = profileData.personal;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +49,7 @@ function NavigationBar() {
                 onClick={() => scrollToSection('home')}
                 className="text-lg font-semibold text-white hover:text-gray-300 transition-colors"
               >
-                &lt;/&gt; DilZhan Yapa
+                &lt;/&gt; {name}
               </button>
             </div>
             
