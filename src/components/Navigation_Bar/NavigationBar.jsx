@@ -6,7 +6,7 @@ function NavigationBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { navigation } = navigationData;
-  const { name } = profileData.personal;
+  const { name, logo } = profileData.personal;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,15 +47,22 @@ function NavigationBar() {
             <div className="flex items-center">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-lg font-semibold text-white hover:text-gray-300 transition-colors"
+                className="flex items-center gap-3 hover:opacity-80 transition-opacity"
               >
-                &lt;/&gt; {name}
+                <img 
+                  src={logo} 
+                  alt={name}
+                  className="h-8 w-auto"
+                />
+                <span className="text-lg font-semibold text-white">
+                  {name}
+                </span>
               </button>
             </div>
             
             {/* Desktop Navigation - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-8">
-              {navigation && navigation.map((item) => (
+              {navigation?.map((item) => (
                 <button 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
@@ -98,7 +105,7 @@ function NavigationBar() {
       >
         <nav className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-col space-y-1">
-            {navigation && navigation.map((item, index) => (
+            {navigation?.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}

@@ -5,7 +5,8 @@
     "title": "Software Engineering Student @ SLIIT",
     "bio": "Full-Stack Developer specializing in building scalable solutions. Focused on DevOps practices and modern web technologies.",
     "location": "Colombo, Sri Lanka",
-    "profileImage": "/src/assets/AboutMe/dp.png"
+    "profileImage": "/src/assets/AboutMe/dp.png",
+    "logo": "./vite.svg"
   },
   "contact": {
     "email": "contact@dilzhan.com",
