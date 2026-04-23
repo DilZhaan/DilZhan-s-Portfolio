@@ -252,8 +252,6 @@ function Projects() {
           .filter(repo => {
             // Exclude specific repos
             if (EXCLUDED_REPOS.includes(repo.name)) return false;
-            // Exclude forks (optional - remove this line to include forks)
-            if (repo.fork) return false;
             return true;
           })
           .map(repo => ({
