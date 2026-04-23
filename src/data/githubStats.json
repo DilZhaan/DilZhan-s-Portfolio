@@ -1,24 +1,19 @@
 {
   "title": "Contribution Overview",
-  "description": "Real-time insights powered by the GitHub API. Monochrome, minimal, and updated automatically from the self-hosted endpoints.",
+  "description": "Live insights powered by public GitHub API data.",
   "labels": {
-    "last30Days": "Last 30 Days",
+    "lastYear": "Last Year",
     "currentStreak": "Current Streak",
     "longestStreak": "Longest Streak",
-    "activity": "Activity",
-    "contributions": "contributions in the last 30 days",
-    "commits": "commits",
+    "activity": "Weekly Activity",
+    "contributionsInLastYear": "contributions in the last year",
+    "contributionsLabel": "contributions",
     "days": "days",
     "repositories": "Repositories",
     "starsEarned": "Stars Earned",
     "followers": "Followers",
     "forks": "Forks"
   },
-  "dummyData": {
-    "recentCommits": 12,
-    "currentStreak": 5,
-    "longestStreak": 47
-  },
   "errorMessage": "Unable to load GitHub statistics",
-  "activityBars": 30
+  "activityBars": 52
 }
