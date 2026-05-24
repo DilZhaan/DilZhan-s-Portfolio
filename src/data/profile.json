@@ -52,8 +52,8 @@
       "Software Engineer",
       "AI Enthusiast"
     ],
-    "description": "Software Engineer at HashBaze building modern web applications and cloud-native systems with a focus on DevOps practices.",
-    "buttons": [
+   "description": "Software Engineer who builds modern web applications and cloud-native systems, with a strong focus on DevOps practices and shipping things that scale.",
+   "buttons": [
       {
         "text": "Download CV",
         "type": "primary",
