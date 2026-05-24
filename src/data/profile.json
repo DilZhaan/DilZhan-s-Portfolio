@@ -2,7 +2,7 @@
   "personal": {
     "name": "DilZhan Yapa",
     "initials": "DY",
-    "title": "Software Engineering Student @ SLIIT",
+    "title": "Software Engineer @ HashBaze Pvt Ltd",
     "bio": "Full-Stack Developer specializing in building scalable solutions. Focused on DevOps practices and modern web technologies.",
     "location": "Colombo, Sri Lanka",
     "profileImage": "/src/assets/AboutMe/dp.png",
@@ -33,8 +33,8 @@
   "about": {
     "title": "About me",
     "paragraphs": [
-      "I'm a versatile Software Engineering undergraduate at the Sri Lanka Institute of Information Technology with a dual focus on Full-Stack Development and DevOps Engineering. My approach combines academic knowledge with hands-on experience to create end-to-end solutions that are both user-friendly and operationally robust.",
-      "Where others see development and operations as separate domains, I bridge these worlds by embracing both the creative aspects of front-end development and the systematic approach of infrastructure automation. My projects demonstrate not just functional solutions, but thoughtfully architected systems that connect responsive interfaces with reliable backends while implementing DevOps best practices for seamless deployment and scaling."
+      "I'm a Software Engineer who enjoys owning the full picture, from the interface a user touches to the pipeline that ships it. I care about writing code that works well and building systems that hold up under pressure.",
+      "I've worked across frontend, backend, and DevOps, and I find the most interesting problems live at the edges where those worlds overlap. Outside of work I write articles and make YouTube content, mostly because explaining things is how I really learn them."
     ],
     "badges": [
       "DevOps Engineer",
@@ -42,18 +42,17 @@
       "CI/CD Specialist",
       "Cloud Enthusiast"
     ],
-    "highlightText": "Sri Lanka Institute of Information Technology"
+  "highlightText": "most interesting problems live at the edges"
   },
   "hero": {
     "greeting": "Hi, I'm",
     "typingTexts": [
-      "Dev Ops Engineer",
-      "Undergraduate Student",
+      "DevOps Engineer",
       "Full Stack Engineer",
       "Software Engineer",
       "AI Enthusiast"
     ],
-    "description": "Software Engineering student at SLIIT passionate about building modern web applications and exploring DevOps practices.",
+    "description": "Software Engineer at HashBaze building modern web applications and cloud-native systems with a focus on DevOps practices.",
     "buttons": [
       {
         "text": "Download CV",
