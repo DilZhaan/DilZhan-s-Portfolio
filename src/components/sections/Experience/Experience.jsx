@@ -1,16 +1,40 @@
 import { useState } from "react";
 import experienceData from "../../../data/experience.json";
 
+const calculateMonthSpan = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()) || end < start) {
+    return 0;
+  }
+
+  return (
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    (end.getMonth() - start.getMonth()) +
+    1
+  );
+};
+
+const formatDuration = (months) => {
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  if (years > 0 && remainingMonths > 0) {
+    return `${years} yr${years > 1 ? 's' : ''} ${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
+  } else if (years > 0) {
+    return `${years} yr${years > 1 ? 's' : ''}`;
+  } else {
+    return `${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
+  }
+};
+
 function CompanyExperienceGroup({ companyExperiences, isLast }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   // Get company info from first experience
   const company = companyExperiences[0].company;
   const companyLogo = companyExperiences[0].logo;
-  const location = companyExperiences[0].location;
-  
-  // Get the most recent position title
-  const latestPosition = companyExperiences[0].title;
   
   // Calculate total duration across all positions
   const calculateTotalDuration = () => {
@@ -22,38 +46,13 @@ function CompanyExperienceGroup({ companyExperiences, isLast }) {
     const earliestStart = new Date(Math.min(...allDates.map(d => d.start)));
     const latestEnd = new Date(Math.max(...allDates.map(d => d.end)));
     
-    const months = (latestEnd.getFullYear() - earliestStart.getFullYear()) * 12 + 
-                   (latestEnd.getMonth() - earliestStart.getMonth());
-    
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
-    
-    if (years > 0 && remainingMonths > 0) {
-      return `${years} yr${years > 1 ? 's' : ''} ${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
-    } else if (years > 0) {
-      return `${years} yr${years > 1 ? 's' : ''}`;
-    } else {
-      return `${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
-    }
+    return formatDuration(calculateMonthSpan(earliestStart, latestEnd));
   };
 
   const calculateDuration = (startDate, endDate, isCurrent) => {
-    const start = new Date(startDate);
     const end = isCurrent ? new Date() : new Date(endDate);
-    
-    const months = (end.getFullYear() - start.getFullYear()) * 12 + 
-                   (end.getMonth() - start.getMonth());
-    
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
-    
-    if (years > 0 && remainingMonths > 0) {
-      return `${years} yr${years > 1 ? 's' : ''} ${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
-    } else if (years > 0) {
-      return `${years} yr${years > 1 ? 's' : ''}`;
-    } else {
-      return `${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`;
-    }
+
+    return formatDuration(calculateMonthSpan(startDate, end));
   };
 
   const formatDate = (dateString) => {

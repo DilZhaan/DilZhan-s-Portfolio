@@ -3,13 +3,13 @@
   "experiences": [
     {
       "id": 1,
-      "title": "Software Engineer",
+      "title": "Intern Software Engineer",
       "company": "HashBaze",
-      "employmentType": "Internship",
+      "employmentType": "Full-time",
       "location": "Colombo, Western Province, Sri Lanka · Remote",
       "startDate": "2025-09-01",
-      "endDate": null,
-      "current": true,
+      "endDate": "2026-05-31",
+      "current": false,
       "description": "Gaining hands-on experience in full-stack development, contributing to both backend and frontend projects. Playing a key role in building scalable applications, implementing new features, and supporting continuous improvement initiatives. Collaborating in an agile team environment, actively participating in code reviews, sprint planning, and delivering reliable solutions to real-world challenges.",
       "skills": [
         "Full-Stack Development",
@@ -17,11 +17,35 @@
         "Next.js",
         "Nest.js",
         "React.js",
+        "React Native",
         "GraphQL",
-        "Agile Development",
-        "Feature Implementation"
+        "Mobile App Development",
+        "Agile Development"
       ],
-      "logo": null
+      "logo": "https://www.hashbaze.com/h.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Trainee Software Engineer",
+      "company": "HashBaze",
+      "employmentType": "Full-time",
+      "location": "Colombo, Western Province, Sri Lanka · Remote",
+      "startDate": "2026-06-01",
+      "endDate": null,
+      "current": true,
+      "description": "Continuing to contribute to full-stack product development with increased ownership across frontend, backend, and delivery workflows. Building scalable features, collaborating with cross-functional teams, participating in code reviews, and supporting reliable releases in an agile engineering environment.",
+      "skills": [
+        "Full-Stack Development",
+        "Node.js",
+        "Next.js",
+        "Nest.js",
+        "React.js",
+        "React Native",
+        "GraphQL",
+        "Mobile App Development",
+        "Agile Development"
+      ],
+      "logo": "https://www.hashbaze.com/h.jpg"
     }
   ]
 }
